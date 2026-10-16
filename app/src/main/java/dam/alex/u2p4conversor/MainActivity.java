@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         double valor = Double.parseDouble(pulgadaText);
-        double resultado = 0.0;
+        //TODO:Actividad 1.2 Como ya estaba en double el resultado solo tenia que ponerle un 0 extra
+        double resultado = 0.00;
 
         //TODO:Actividad 1.1 Con este comando puedo recoger la posicion de la opcion elegida actualmente (0 para el primero, 1 para el segundo...)
         int posicion = selector.getSelectedItemPosition();
