@@ -87,9 +87,13 @@ public class MainActivity extends AppCompatActivity {
         TextView tvError=findViewById(R.id.tvError);
 
         buttonConvertir.setOnClickListener(v -> {
+
             try {
                 etResultado.setText("");
+
                 String textoPulgada = etPulgada.getText().toString();
+                //// TODO: Actividad 3.2 - Creacion de un log cuando se  pulsa el botón convertir
+                Log.d(TAG,"Convertir pulsado");
                 //TODO:Actividad 2.1 Valido el valor introducido en este caso si esta vacio
                 if(textoPulgada.matches(".*[a-zA-Z].*")){
                     throw new Exception("No puedes introducir letras");
