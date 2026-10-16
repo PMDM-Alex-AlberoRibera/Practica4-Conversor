@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 1. Declarar el Spinner a nivel de clase para poder usarlo en otros métodos
+    //TODO:Actividad 1.1 Declarar el Spinner a nivel de clase para poder usarlo en otros métodos
     private Spinner selector;
 
     @Override
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Inicializar el selector
+        //TODO:Actividad 1.1 Inicializar el selector
         selector = findViewById(R.id.selector);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.opciones_conversion, android.R.layout.simple_spinner_item
@@ -50,11 +50,9 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String textoPulgada = etPulgada.getText().toString();
 
-                // 2. Obtener el texto de la opción seleccionada en el Spinner
-                String opcionSeleccionada = selector.getSelectedItem().toString();
 
                 // Pasar ambos valores al método convertir
-                etResultado.setText(convertir(textoPulgada, opcionSeleccionada));
+                etResultado.setText(convertir(textoPulgada));
 
             } catch (Exception e) {
                 Log.e("LogsCOnversor", e.getMessage());
@@ -63,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO:Actividad 1.1 Modificamos la clase convertir usando la posición del selector
-    private String convertir(String pulgadaText, String tipoConversion) {
+    private String convertir(String pulgadaText) {
         if (pulgadaText.isEmpty()) {
             return "";
         }
 
         double valor = Double.parseDouble(pulgadaText);
-        //TODO:Actividad 1.2 Como ya estaba en double el resultado solo tenia que ponerle un 0 extra
+
         double resultado = 0.00;
 
         //TODO:Actividad 1.1 Con este comando puedo recoger la posicion de la opcion elegida actualmente (0 para el primero, 1 para el segundo...)
@@ -82,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
             //TODO:Actividad 1.1(Centímetros a Pulgadas)
             resultado = valor / 2.54;
         }
-
-        return String.valueOf(resultado);
+        //TODO:Actividad 1.2 Con la línea format le indicamos que solo queremos 2 decimales(por el .2f)
+        String format = String.format("%.2f", resultado);
+        return format;
     }
 }
