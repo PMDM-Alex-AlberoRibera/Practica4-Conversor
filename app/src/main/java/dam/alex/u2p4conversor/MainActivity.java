@@ -2,10 +2,12 @@ package dam.alex.u2p4conversor;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,19 +47,29 @@ public class MainActivity extends AppCompatActivity {
         EditText etPulgada = findViewById(R.id.et_Pulgada);
         EditText etResultado = findViewById(R.id.et_Resultado);
         Button buttonConvertir = findViewById(R.id.btnConvertir);
+        TextView tvError=findViewById(R.id.tvError);
 
         buttonConvertir.setOnClickListener(v -> {
             try {
+                etResultado.setText("");
                 String textoPulgada = etPulgada.getText().toString();
                 //TODO:Actividad 2.1 Valido el valor introducido en este caso si esta vacio
+                if(textoPulgada.matches(".*[a-zA-Z].*")){
+                    throw new Exception("No puedes introducir letras");
+                }
                 if (textoPulgada.isEmpty() || textoPulgada.equals(" ")) {
                     throw new Exception("El valor no puede estar vacio");
                 }
 
                 etResultado.setText(convertir(textoPulgada));
+                tvError.setVisibility(View.GONE);
 
             } catch (Exception e) {
                 Log.e("LogsCOnversor", e.getMessage());
+                //TODO:Actividad 2.2 Si falla el codigo el mensaje se guardará en el tvError y se mostrará por pantalla
+                tvError.setText(e.getMessage());
+                tvError.setVisibility(View.VISIBLE);
+                etResultado.setText("");
             }
         });
     }
