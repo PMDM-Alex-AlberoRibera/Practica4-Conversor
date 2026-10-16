@@ -9,5 +9,6 @@
     <string-array name="opciones_conversion">
         <item>Pulgadas a centímetros</item>
         <item>Centímetros a pulgadas</item>
+        <item>Celsius a Fahrenheit</item>
     </string-array>
 </resources>
