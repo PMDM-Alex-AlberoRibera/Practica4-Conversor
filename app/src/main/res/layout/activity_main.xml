@@ -12,32 +12,33 @@
         android:id="@+id/btnConvertir"
         android:layout_width="114dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="96dp"
         android:text="@string/buttonConvertir"
-        app:layout_constraintBottom_toTopOf="@+id/et_Resultado"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.422" />
 
     <EditText
         android:id="@+id/et_Pulgada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
         android:background="@color/black"
         android:ems="10"
+        android:hint="@string/textViewHintPedir"
         android:inputType="number|numberDecimal"
-        android:text="@string/textViewHintPedir"
+        android:textColor="@color/white"
         android:textColorLink="#FFFDFD"
-        app:layout_constraintBottom_toTopOf="@+id/btnConvertir"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:textColor="@color/white" />
+        app:layout_constraintVertical_bias="0.251" />
+
+    <!--TODO:Actividad 1.1 Es el selector en si -->
+    <!--TODO:Actividad 2.2 Este textView es quien se encarga de recoger y mostrar los errores -->
 
     <EditText
         android:id="@+id/et_Resultado"
@@ -50,11 +51,11 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
-    <!--TODO:Actividad 1.1 Es el selector en si -->
+        app:layout_constraintVertical_bias="0.598" />
+
     <Spinner
         android:id="@+id/selector"
         android:layout_width="295dp"
@@ -62,11 +63,9 @@
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
-    <!--TODO:Actividad 2.2 Este textView es quien se encarga de recoger y mostrar los errores -->
+        app:layout_constraintVertical_bias="0.08" />
 
     <TextView
         android:id="@+id/tvError"

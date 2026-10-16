@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,10 +21,20 @@ public class MainActivity extends AppCompatActivity {
     //TODO: Actividad 3.1 - Declarar el TAG para los logs del ciclo de vida
     private static final String TAG = "Conversor";
 
+    //TODO: Actividad 4.2 Aqui creamos las claves para guardar el estado del layout en el Bundle
+    private static final String KEY_TEXTO_PULGADA = "key_texto_pulgada";
+    private static final String KEY_RESULTADO = "key_resultado";
+    private static final String KEY_ERROR = "key_error";
+    private static final String KEY_ERROR_VISIBILIDAD = "key_error_visibilidad";
+    private static final String KEY_POSICION_SPINNER = "key_posicion_spinner";
+
     //TODO:Actividad 1.1 Declarar el Spinner a nivel de clase para poder usarlo en otros métodos
     private Spinner selector;
-    //TODO:Actividad 4.1 Al poner la vista horizontal la informacion de los textView se va aunque tambien mi EditText desaparece al parecer porque me falta un dato crucial
-    //TODO:Actividad 4.1 y porque se recrea la Activity por el opnCreate
+    private EditText etPulgada;
+    private EditText etResultado;
+    private TextView tvError;
+
+    //TODO:Actividad 4.1 Al poner la vista horizontal la informacion de los textView se va  y porque se recrea la Activity por el onCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +44,12 @@ public class MainActivity extends AppCompatActivity {
         //TODO: Actividad 3.1 - Log para onCreate
         Log.d(TAG, "onCreate");
 
-        //TODO:Actividad 1.1 Inicializar el selector
+        //TODO:Actividad 1.1 Inicializar el selector y vistas a nivel de clase
         selector = findViewById(R.id.selector);
+        etPulgada = findViewById(R.id.et_Pulgada);
+        etResultado = findViewById(R.id.et_Resultado);
+        tvError = findViewById(R.id.tvError);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.opciones_conversion, android.R.layout.simple_spinner_item
         );
@@ -47,7 +62,30 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        //TODO: Actividad 4.2 - Recuperar los datos si la Activity se ha recreado (por ejemplo, al girar)
+        if (savedInstanceState != null) {
+            Log.d(TAG, "Recuperando estado previamente guardado");
+            etPulgada.setText(savedInstanceState.getString(KEY_TEXTO_PULGADA, ""));
+            etResultado.setText(savedInstanceState.getString(KEY_RESULTADO, ""));
+            tvError.setText(savedInstanceState.getString(KEY_ERROR, ""));
+            tvError.setVisibility(savedInstanceState.getInt(KEY_ERROR_VISIBILIDAD, View.GONE));
+            selector.setSelection(savedInstanceState.getInt(KEY_POSICION_SPINNER, 0));
+        }
+
         setUI();
+    }
+
+    //TODO: Actividad 4.2 - Guardar el estado antes de destruir la Activity al girar
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "Guardando estado de la vista");
+
+        outState.putString(KEY_TEXTO_PULGADA, etPulgada.getText().toString());
+        outState.putString(KEY_RESULTADO, etResultado.getText().toString());
+        outState.putString(KEY_ERROR, tvError.getText().toString());
+        outState.putInt(KEY_ERROR_VISIBILIDAD, tvError.getVisibility());
+        outState.putInt(KEY_POSICION_SPINNER, selector.getSelectedItemPosition());
     }
 
     //TODO: Actividad 3.1 - Métodos del ciclo de vida creados para mayor organizacion al momemto de colocar los logs
@@ -82,10 +120,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUI() {
-        EditText etPulgada = findViewById(R.id.et_Pulgada);
-        EditText etResultado = findViewById(R.id.et_Resultado);
         Button buttonConvertir = findViewById(R.id.btnConvertir);
-        TextView tvError=findViewById(R.id.tvError);
 
         buttonConvertir.setOnClickListener(v -> {
 
@@ -93,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 etResultado.setText("");
 
                 String textoPulgada = etPulgada.getText().toString();
-                //// TODO: Actividad 3.2 - Creacion de un log cuando se  pulsa el botón convertir
+                //// TODO: Actividad 3.2 - Creacion de un log cuando se pulsa el botón convertir
                 Log.d(TAG,"Convertir pulsado");
                 //TODO:Actividad 2.1 Valido el valor introducido en este caso si esta vacio
                 if(textoPulgada.matches(".*[a-zA-Z].*")){
