@@ -4,4 +4,10 @@
     <string name="textViewHintPedir">Introduce las pulgadas</string>
     <string name="buttonConvertir">Convertir</string>
     <string name="editTextHintResultado">Resultado</string>
+    <!--TODO:Actividad 1.1 Las opciones a elegir para el selector -->
+
+    <string-array name="opciones_conversion">
+        <item>Pulgadas a centímetros</item>
+        <item>Centímetros a pulgadas</item>
+    </string-array>
 </resources>
