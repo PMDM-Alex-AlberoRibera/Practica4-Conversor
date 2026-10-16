@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     //TODO:Actividad 1.1 Declarar el Spinner a nivel de clase para poder usarlo en otros métodos
     private Spinner selector;
-
+    //TODO:Actividad 4.1 Al poner la vista horizontal la informacion de los textView se va aunque tambien mi EditText desaparece al parecer porque me falta un dato crucial
+    //TODO:Actividad 4.1 y porque se recrea la Activity por el opnCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
