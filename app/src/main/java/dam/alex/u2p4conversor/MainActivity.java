@@ -17,6 +17,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    //TODO: Actividad 3.1 - Declarar el TAG para los logs del ciclo de vida
+    private static final String TAG = "Conversor";
+
     //TODO:Actividad 1.1 Declarar el Spinner a nivel de clase para poder usarlo en otros métodos
     private Spinner selector;
 
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        //TODO: Actividad 3.1 - Log para onCreate
+        Log.d(TAG, "onCreate");
 
         //TODO:Actividad 1.1 Inicializar el selector
         selector = findViewById(R.id.selector);
@@ -41,6 +47,37 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUI();
+    }
+
+    //TODO: Actividad 3.1 - Métodos del ciclo de vida creados para mayor organizacion al momemto de colocar los logs
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "La aplicacion Inicia");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "Se puso en Resumen");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "Esta pausado");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "Esta en estado de Stop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "Se destruyo la app");
     }
 
     private void setUI() {
@@ -80,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         double valor = Double.parseDouble(pulgadaText);
         //TODO:Actividad 2.1 Aqui comprueba si el numero es igual o mayor a 1
         if (valor<1){
-        throw new Exception("Solo numeros iguales o mayores a 1");
+            throw new Exception("Solo numeros iguales o mayores a 1");
         }
         double resultado = 0.00;
 
