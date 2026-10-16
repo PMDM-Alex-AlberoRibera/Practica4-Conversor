@@ -49,9 +49,11 @@ public class MainActivity extends AppCompatActivity {
         buttonConvertir.setOnClickListener(v -> {
             try {
                 String textoPulgada = etPulgada.getText().toString();
+                //TODO:Actividad 2.1 Valido el valor introducido en este caso si esta vacio
+                if (textoPulgada.isEmpty() || textoPulgada.equals(" ")) {
+                    throw new Exception("El valor no puede estar vacio");
+                }
 
-
-                // Pasar ambos valores al método convertir
                 etResultado.setText(convertir(textoPulgada));
 
             } catch (Exception e) {
@@ -61,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO:Actividad 1.1 Modificamos la clase convertir usando la posición del selector
-    private String convertir(String pulgadaText) {
-        if (pulgadaText.isEmpty()) {
-            return "";
-        }
+    private String convertir(String pulgadaText) throws Exception {
 
         double valor = Double.parseDouble(pulgadaText);
-
+        //TODO:Actividad 2.1 Aqui comprueba si el numero es igual o mayor a 1
+        if (valor<1){
+        throw new Exception("Solo numeros iguales o mayores a 1");
+        }
         double resultado = 0.00;
 
         //TODO:Actividad 1.1 Con este comando puedo recoger la posicion de la opcion elegida actualmente (0 para el primero, 1 para el segundo...)
